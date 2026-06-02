@@ -205,15 +205,21 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
 
       // --- Load Employees ---
       let localEmployees = localStorage.getItem('airsystems_local_employees');
+      if (localEmployees && (localEmployees.includes('vancebrown.com') || localEmployees.includes('richard22@gmail.com'))) {
+        localStorage.removeItem('airsystems_local_employees');
+        localStorage.removeItem('airsystems_user');
+        localEmployees = null;
+      }
+      
       let emps = [];
       if (!localEmployees) {
         emps = [
-          { id: "EMP-007", name: "richard", email: "richard22@gmail.com", balance: 250, created_at: new Date().toISOString(), password: "srf2024", role: "employee", site: "site33" },
-          { id: "EMP-001", name: "Vance Admin", email: "admin@vancebrown.com", balance: 250, created_at: new Date().toISOString(), password: "vance2026", role: "super_admin", site: "" },
-          { id: "EMP-006", name: "Carlos Silva", email: "carlos@vancebrown.com", balance: 250, created_at: new Date().toISOString(), password: "vance2026", role: "employee", site: "Site 42 - Main Hub" },
-          { id: "EMP-003", name: "Mike Ross", email: "mike@vancebrown.com", balance: 250, created_at: new Date().toISOString(), password: "vance2026", role: "employee", site: "" },
-          { id: "EMP-004", name: "Sarah Connor", email: "sarah@vancebrown.com", balance: 250, created_at: new Date().toISOString(), password: "vance2026", role: "employee", site: "" },
-          { id: "EMP-005", name: "Shezi Dev", email: "developer@vancebrown.com", balance: 250, created_at: new Date().toISOString(), password: "vance2026", role: "employee", site: "site 42" }
+          { id: "EMP-007", name: "Richard", email: "richard@airsystems1.com", balance: 250, created_at: new Date().toISOString(), password: "airsystems2026", role: "employee", site: "Site 33" },
+          { id: "EMP-001", name: "Vance Admin", email: "admin@airsystems1.com", balance: 250, created_at: new Date().toISOString(), password: "airsystems2026", role: "super_admin", site: "" },
+          { id: "EMP-006", name: "Carlos Silva", email: "carlos@airsystems1.com", balance: 250, created_at: new Date().toISOString(), password: "airsystems2026", role: "employee", site: "Site 42 - Main Hub" },
+          { id: "EMP-003", name: "Mike Ross", email: "mike@airsystems1.com", balance: 250, created_at: new Date().toISOString(), password: "airsystems2026", role: "employee", site: "" },
+          { id: "EMP-004", name: "Sarah Connor", email: "sarah@airsystems1.com", balance: 250, created_at: new Date().toISOString(), password: "airsystems2026", role: "employee", site: "" },
+          { id: "EMP-005", name: "Shezi Dev", email: "developer@airsystems1.com", balance: 250, created_at: new Date().toISOString(), password: "airsystems2026", role: "employee", site: "Site 42" }
         ];
         localStorage.setItem('airsystems_local_employees', JSON.stringify(emps));
       } else {
